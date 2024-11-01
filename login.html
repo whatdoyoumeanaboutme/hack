@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login</title>
+  <title>Авторизация</title>
 </head>
 <body>
+  {{ if .error }}
+    <p style="color: red;">{{ .error }}</p>
+  {{ end }}
+
   <form action="/" method="post">
-    <label for="username">Username:</label><br>
+    <label for="username">Логин:</label><br>
     <input type="text" id="username" name="username"><br>
-    <label for="password">Password:</label><br>
+    <label for="password">Пароль:</label><br>
     <input type="password" id="password" name="password"><br><br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Войти">
   </form>
-  <p>Тут тоже красоту навёдем логин user  пароль pass </p>
+  <p>У вас есть аккаунт? <a href="/register">Регистрация</a></p>
 </body>
 </html>
