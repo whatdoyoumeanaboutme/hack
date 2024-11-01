@@ -20,7 +20,15 @@ type UserData struct {
 	Password string
 }
 
-// Функция для обработки запросов на регистрацию
+// @Summary Регистрация нового пользователя
+// @Description Регистрирует нового пользователя
+// @Tags users
+// @Accept json
+// @Param username query string true "Имя пользователя"
+// @Param password query string true "Пароль"
+// @Success 200 {string} OK "Регистрация прошла успешно"
+// @Failure 400 {string} BadRequest "Пользователь с таким именем уже существует"
+// @Router /register [post]
 func registerHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
 		tmpl, err := template.ParseFiles("register.html") // наша регистрация
@@ -51,6 +59,15 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// @Summary Авторизация пользователя
+// @Description Авторизует пользователя
+// @Tags users
+// @Accept json
+// @Param username query string true "Имя пользователя"
+// @Param password query string true "Пароль"
+// @Success 200 {string} OK "Авторизация прошла успешно"
+// @Failure 401 {string} Unauthorized "Неверный логин или пароль"
+// @Router /login [post]
 func loginHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
 		tmpl, err := template.ParseFiles("login.html") // наша авторизация
@@ -86,6 +103,11 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// @Summary Страница приветствия
+// @Description Отображает страницу приветствия для авторизованных пользователей
+// @Tags users
+// @Success 200 {string} OK "Страница приветствия"
+// @Router /welcome [get]
 func welcomeHandler(w http.ResponseWriter, r *http.Request) {
 	// Отображаем страницу приветствия с использованием шаблона
 	data := WelcomeData{Message: "Добро пожаловать"}
