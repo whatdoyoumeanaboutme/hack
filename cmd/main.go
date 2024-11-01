@@ -107,6 +107,9 @@ func main() {
 	http.HandleFunc("/", loginHandler)
 	http.HandleFunc("/welcome", welcomeHandler)
 	http.HandleFunc("/register", registerHandler)
+	http.HandleFunc("/swagger", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "swagger.html")
+	})
 
 	fmt.Println("Server starting on http://localhost:8080...")
 	http.ListenAndServe(":8080", nil)

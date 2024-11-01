@@ -1,0 +1,79 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "User Authentication API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/register": {
+      "post": {
+        "summary": "Регистрация нового пользователя",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Успешная регистрация"
+          },
+          "400": {
+            "description": "Ошибка: пользователь уже существует"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "Авторизация пользователя",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Успешная авторизация"
+          },
+          "401": {
+            "description": "Ошибка: неверный логин или пароль"
+          }
+        }
+      }
+    },
+    "/welcome": {
+      "get": {
+        "summary": "Страница приветствия",
+        "responses": {
+          "200": {
+            "description": "Страница приветствия"
+          }
+        }
+      }
+    }
+  }
+}
