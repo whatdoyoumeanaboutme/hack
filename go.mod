@@ -1,6 +1,6 @@
 module github.com/1ssk/hack.git
 
-go 1.22.5
+go 1.20
 
 require (
 	github.com/KyleBanks/depth v1.2.1 // indirect
