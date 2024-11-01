@@ -100,6 +100,10 @@ func welcomeHandler(w http.ResponseWriter, r *http.Request) {
 var users = make(map[string]UserData)
 
 func main() {
+	fs := http.FileServer(http.Dir("static"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
+
+	// Изменение маршрута: теперь / будет перенаправлять на loginHandler
 	http.HandleFunc("/", loginHandler)
 	http.HandleFunc("/welcome", welcomeHandler)
 	http.HandleFunc("/register", registerHandler)
