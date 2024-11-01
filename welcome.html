@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-  <title>Основа</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Добро пожаловать!</title>
+  <link rel="stylesheet" href="static/welcome.css">
 </head>
 <body>
-  <h1>Велком</h1>
-  <h2>Тут ещё надо будет красоты навести и добавить систему оплаты </h2>
+  <div class="container">
+    <h1>Добро пожаловать в ваш банковский профиль!</h1>
+    <div class="api-key-section">
+      <h2>API Ключ:</h2>
+      <input type="text" id="api-key" placeholder="Введите ваш API-ключ" readonly>
+      <button id="generate-api-key">Сгенерировать новый API-ключ</button>
+    </div>
+
+    <div class="actions">
+      <button id="balance-button">Проверить баланс</button>
+      <button id="transfer-button">Перевести средства</button>
+    </div>
+
+    <div id="balance-result">
+      </div>
+
+    <div id="transfer-form">
+      <h2>Перевести средства:</h2>
+      <input type="text" id="recipient-account" placeholder="Счет получателя">
+      <input type="number" id="amount" placeholder="Сумма">
+      <button id="transfer-submit">Перевести</button>
+    </div>
+  </div>
+
+  <script src="static/welcome.js"></script>
 </body>
 </html>
