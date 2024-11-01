@@ -6,18 +6,18 @@ import (
 	"net/http"
 )
 
-//	@title			My Awesome API
-//	@version		1.0
-//	@description	An API to demonstrate OpenAPI integration.
-//	@termsOfService	http://swagger.io/terms/
-//	@contact.name	API Support
-//	@contact.email	support@swagger.io
-//	@license.name	Apache 2.0
-//	@license.url	http://www.apache.org/licenses/LICENSE-2.0.html
+// @title       My Awesome API
+// @version     1.0
+// @description An API to demonstrate OpenAPI integration.
+// @termsOfService  http://swagger.io/terms/
+// @contact.name  API Support
+// @contact.email support@swagger.io
+// @license.name  Apache 2.0
+// @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
 
-//	@host		localhost:8080
-//	@BasePath	/
-//	@schemes	http
+// @host      localhost:8080
+// @BasePath  /
+// @schemes   http
 
 type Credentials struct {
 	Username string
@@ -28,15 +28,15 @@ type WelcomeData struct {
 	Message string
 }
 
-//	@Summary		Login to the system
-//	@Description	Logs in a user with given username and password.
-//	@Accept			json
-//	@Produce		json
-//	@Param			username	query		string	true	"Username"
-//	@Param			password	query		string	true	"Password"
-//	@Success		200			{object}	Credentials
-//	@Failure		401			{object}	error	"Invalid credentials"
-//	@Router			/login [post]
+// @Summary Login to the system
+// @Description Logs in a user with given username and password.
+// @Accept  json
+// @Produce json
+// @Param username query string true "Username"
+// @Param password query string true "Password"
+// @Success 200 {object} Credentials
+// @Failure 401 {object} error "Invalid credentials"
+// @Router /login [post]
 
 func loginHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
@@ -63,12 +63,12 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-//	@Summary		Get welcome page
-//	@Description	Returns the welcome page with a message.
-//	@Accept			json
-//	@Produce		json
-//	@Success		200	{object}	WelcomeData
-//	@Router			/welcome [get]
+// @Summary Get welcome page
+// @Description Returns the welcome page with a message.
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} WelcomeData
+// @Router /welcome [get]
 
 func welcomeHandler(w http.ResponseWriter, r *http.Request) {
 	// Отображаем страницу приветствия с использованием шаблона
