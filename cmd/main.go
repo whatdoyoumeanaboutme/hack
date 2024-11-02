@@ -154,11 +154,14 @@ func welcomeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	fs := http.FileServer(http.Dir("static"))
-	http.Handle("/static/", http.StripPrefix("/static/", fs))
+	cssFiles := http.FileServer(http.Dir("css"))
+	jsFiles := http.FileServer(http.Dir("js"))
+	
+	http.Handle("/css/", http.StripPrefix("/css/", cssFiles))
+	http.Handle("/js/", http.StripPrefix("/js/", jsFiles))
 
-	http.HandleFunc("/", loginHandler)
-	http.HandleFunc("/welcome", welcomeHandler)
+	http.HandleFunc("/", welcomeHandler)
+	http.HandleFunc("/login", loginHandler)
 	http.HandleFunc("/register", registerHandler)
 
 	fmt.Println("Server starting on http://localhost:8080...")

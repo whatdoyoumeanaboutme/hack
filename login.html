@@ -4,12 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Авторизация</title>
-  <link rel="stylesheet" href="static/login.css">
+  <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
   <form action="/" method="post">
     <h2>Вход</h2>
-    <div id="error-message" style="color: red;">{{ .ErrorMessage }}</div>
     <label for="username">Логин:</label>
     <input type="text" id="username" name="username" required>
     <label for="password">Пароль:</label>
@@ -17,7 +16,6 @@
     <input type="submit" value="Войти">
     <p>У вас нет аккаунта? <a href="/register">Регистрация</a></p>
   </form>
-  <script src="static/login.js"></script>
+  <script src="./js/login.js"></script>
 </body>
 </html>
-
