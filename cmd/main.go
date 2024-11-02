@@ -6,7 +6,7 @@ import (
 	"html/template"
 	"net/http"
 
-	_ "github.com/lib/pq" // Импорт драйвера PostgreSQL
+	_ "github.com/lib/pq"
 )
 
 type Credentials struct {
@@ -25,7 +25,6 @@ type UserData struct {
 
 // Функция для подключения к базе данных PostgreSQL
 func connectToDB() (*sql.DB, error) {
-	// Замените "user:password@host:port/database" на ваши данные подключения
 	db, err := sql.Open("postgres", "user=postgres password=123 host=localhost port=5432 dbname=auto sslmode=disable")
 	if err != nil {
 		return nil, err
@@ -107,7 +106,16 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		var storedPassword string
 		err = db.QueryRow("SELECT password FROM users WHERE username = $1", username).Scan(&storedPassword)
 		if err != nil {
-			http.Error(w, "Ошибка проверки пользователя", http.StatusInternalServerError)
+			// Отображаем сообщение об ошибке в том же шаблоне
+			tmpl, err := template.ParseFiles("login.html")
+			if err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+				return
+			}
+			data := map[string]interface{}{
+				"ErrorMessage": "Ошибка проверки пользователя",
+			}
+			tmpl.Execute(w, data)
 			return
 		}
 
@@ -116,7 +124,16 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 			http.Redirect(w, r, "/welcome", http.StatusFound)
 			return
 		} else {
-			http.Error(w, "Ошибка авторизации", http.StatusUnauthorized)
+			// Отображаем сообщение об ошибке в том же шаблоне
+			tmpl, err := template.ParseFiles("login.html")
+			if err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+				return
+			}
+			data := map[string]interface{}{
+				"ErrorMessage": "Ошибка авторизации",
+			}
+			tmpl.Execute(w, data)
 			return
 		}
 	} else {

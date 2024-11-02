@@ -9,6 +9,7 @@
 <body>
   <form action="/" method="post">
     <h2>Вход</h2>
+    <div id="error-message" style="color: red;">{{ .ErrorMessage }}</div>
     <label for="username">Логин:</label>
     <input type="text" id="username" name="username" required>
     <label for="password">Пароль:</label>
@@ -19,6 +20,4 @@
   <script src="static/login.js"></script>
 </body>
 </html>
-
-
 
